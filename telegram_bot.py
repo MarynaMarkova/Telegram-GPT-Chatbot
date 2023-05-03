@@ -38,8 +38,7 @@ class ChatGPT3TelegramBot:
         await update.message.reply_text(
             "/start - Розпочати бесіду\n"
             "[Будь яке повідомлення] - Відправляє ваше повідомлення до AI\n"
-        
-           
+            "/ask - Спитати що завгодно \n",
             disable_web_page_preview=True,
         )
 
@@ -138,6 +137,17 @@ class ChatGPT3TelegramBot:
 
         return False
 
+    async def ask(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        await update.message.reply_text("Спитай мене про що завгодно")
+
+    async def joke(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        await update.message.reply_text(
+            """
+– Відповідь на питання життя, Всесвіту і взагалі?
+– 42.
+        """
+        )
+
     def run(self):
         """
         Запускає бот доки користувач не натисне Ctrl+C
@@ -152,5 +162,7 @@ class ChatGPT3TelegramBot:
         )
 
         application.add_error_handler(self.error_handler)
+        application.add_handler(CommandHandler("ask", self.ask))
+        application.add_handler(CommandHandler("joke", self.joke))
 
         application.run_polling()
