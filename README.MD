@@ -1,1 +1,1 @@
-This is a simple Telegram GPT ChatBot created with IT-BRAINS school.
+This is a Telegram GPT ChatBot created with IT-BRAINS school.
